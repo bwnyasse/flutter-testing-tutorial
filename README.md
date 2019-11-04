@@ -1,16 +1,19 @@
 # flutter_movie_deep_dive_test
 
-A new Flutter project.
+Testing Flutter Applications
 
-## Getting Started
+## Don't forget to test your Dart Code
 
-This project is a starting point for a Flutter application.
+Testing is one of the most important things during the software development.
 
-A few resources to get you started if this is your first Flutter project:
+One of the beauty of the Dart Ecosystem, is the way developers can easily test their code.
 
-- [Lab: Write your first Flutter app](https://flutter.dev/docs/get-started/codelab)
-- [Cookbook: Useful Flutter samples](https://flutter.dev/docs/cookbook)
+Flutter has 3 types of tests.
 
-For help getting started with Flutter, view our
-[online documentation](https://flutter.dev/docs), which offers tutorials,
-samples, guidance on mobile development, and a full API reference.
+- Unit tests are the one used for testing a method, or class.
+- Widget tests are the tests for controlling single widget.
+- Integration tests are tests the large scale or all of the application.
+
+## Purpose
+
+Through a flutter movie application , this project demonstrate how to implement **unit** , **widgets** and **integration** tests in your application.
