@@ -16,18 +16,29 @@ void main() {
   });
 
   testWidgets('Display Movie Card', (WidgetTester tester) async {
-    await tester.pumpWidget(
-      MaterialApp(
-        home: Scaffold(
-          body: MovieCard(
-            //TODO 1- Initialize the key with the movie.id
-            data: movie,
+    provideMockedNetworkImages(() async {
+      await tester.pumpWidget(
+        MaterialApp(
+          home: Scaffold(
+            body: MovieCard(
+              key: Key("${movie.id}"),
+              data: movie,
+            ),
           ),
         ),
-      ),
-    );
+      );
 
-    //TODO: 2- Find objects to match
-    throw UnimplementedError();
+      final movieFinder = find.byType(MovieCard);
+      expect(movieFinder, findsOneWidget);
+
+      Finder textFinder = find.text(movie.title);
+      expect(textFinder, findsOneWidget);
+
+      textFinder = find.text(movie.overview);
+      expect(textFinder, findsOneWidget);
+
+      textFinder = find.text(movie.releaseDate);
+      expect(textFinder, findsOneWidget);
+    });
   });
 }
