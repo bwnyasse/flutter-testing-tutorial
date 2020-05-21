@@ -1,3 +1,49 @@
+<table style="width:100%">
+  <tr>
+    <th>License</th>
+    <th>Gitlab CI</th>
+    <th>Github Action</th>
+  </tr>
+  <tr>
+    <td>
+        <img src="https://img.shields.io/static/v1?label=License&message=MIT&color=blue"/>
+    </td>
+    <td>
+        <a href="https://gitlab.com/bwnyasse/flutter-testing-tutorial/commits/master" target="_blank">
+            <img src="https://gitlab.com/bwnyasse/flutter-testing-tutorial/badges/master/pipeline.svg"/>
+        </a>
+    </td>
+    <td>
+        <a href="https://github.com/bwnyasse/flutter-testing-tutorial/actions?query=workflow%3A%22Flutter+Testing+Tutorial+CI+On+push%22" target="_blank">
+            <img src="https://github.com/bwnyasse/flutter-testing-tutorial/workflows/Flutter%20Testing%20Tutorial%20CI%20On%20push/badge.svg"/>
+        </a>
+    </td>
+  </tr>
+</table>
+
+<table style="width:100%">
+  <tr>
+    <th>Platform</th>
+    <th>Code Coverage</th>
+    <th>Coverage with codecov.io</th>
+  </tr>
+  <tr>
+    <td>
+        <img src="https://img.shields.io/static/v1?label=Flutter&message=ANDROID-IOS&color=informational?style=plastic&logo=flutter&logoColor=blue"/>
+    </td>
+    <td>
+        <a href="https://codecov.io/gl/bwnyasse/flutter-testing-tutorial/tree/master/lib/src" target="_blank">
+            <img src="https://gitlab.com/bwnyasse/flutter-testing-tutorial/badges/master/coverage.svg"/>
+        </a>
+    </td>
+    <td>
+        <a href="https://codecov.io/gl/bwnyasse/flutter-testing-tutorial" target="_blank">
+            <img src="https://codecov.io/gl/bwnyasse/flutter-testing-tutorial/branch/master/graph/badge.svg"/>
+        </a>
+    </td>
+  </tr>
+</table>
+
 # flutter_movie_deep_dive_test
 
 Testing Flutter Applications
@@ -17,3 +63,5 @@ Flutter has 3 types of tests.
 ## Purpose
 
 Through a flutter movie application , this project demonstrate how to implement **unit** , **widgets** and **integration** tests in your application.
+
+
