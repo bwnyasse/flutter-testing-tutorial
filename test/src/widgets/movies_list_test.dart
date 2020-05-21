@@ -26,15 +26,13 @@ void main() {
       );
 
       Finder movieFinder = find.byType(MovieCard);
-      //TODO 1- Fix this following except method
-      expect(movieFinder, findsNWidgets(1));
+      expect(movieFinder, findsNWidgets(2));
 
       // Expect movie card from exampleJson
       movieFinder = find.byKey(Key("1"));
       expect(movieFinder, findsOneWidget);
 
-      //TODO 1- Fix the following find.byKey
-      movieFinder = find.byKey(Key("4"));
+      movieFinder = find.byKey(Key("2"));
       expect(movieFinder, findsOneWidget);
     });
   });
