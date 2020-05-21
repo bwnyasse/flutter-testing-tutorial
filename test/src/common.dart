@@ -88,3 +88,41 @@ final exampleJsonResponse = {
     }
   ],
 };
+
+///
+/// Another Example JSON Response from the API : https://developers.themoviedb.org/3
+///
+final exampleJsonResponse2 = {
+  "results": [
+    {
+      "adult": false,
+      "backdrop_path": "/fCayJrkfRaCRCTh8GqN30f8oyQF.jpg",
+      "homepage": "",
+      "id": 1,
+      "original_language": "en",
+      "original_title": "Fight Club",
+      "poster_path": null,
+      "release_date": "1999-10-12",
+      "title": "Fight Club",
+      "overview": "Overview 1",
+      "video": false,
+      "vote_average": 7.8,
+      "vote_count": 3439
+    },
+    {
+      "adult": false,
+      "backdrop_path": "/fCayJrkfRaCECTh8GqN30f8oyQF.jpg",
+      "homepage": "",
+      "id": 2,
+      "original_language": "en",
+      "original_title": "London the best",
+      "poster_path": null,
+      "release_date": "1999-10-12",
+      "title": "Fight Club",
+      "overview": "Overview 2",
+      "video": false,
+      "vote_average": 8.8,
+      "vote_count": 3440
+    }
+  ],
+};
