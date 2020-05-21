@@ -20,6 +20,17 @@ main() {
       expect(actualResponse, equals(expectedResponse));
     });
 
-    //TODO 1- Must test the case status != 200
+    test('status != 200', () async {
+      final mockClient = MockClient((request) async {
+        return Response(json.encode(exampleJsonResponse), 500);
+      });
+      final service = AppService(mockClient);
+      expect(
+        () async => await service.loadMovies(),
+        throwsA(predicate((e) =>
+            e is LoadMoviesException &&
+            e.message == 'LoadMovies - Request Error: 500')),
+      );
+    });
   });
 }
