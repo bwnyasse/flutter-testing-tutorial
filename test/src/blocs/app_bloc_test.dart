@@ -23,13 +23,48 @@ main() {
   test('close does not emit new app state', () {
     appBloc.close();
 
-    //TODO: 1- Must implement and check emitsDone
-    throw UnimplementedError();
+    expectLater(
+      appBloc,
+      emitsInOrder([AppEmpty(), emitsDone]),
+    );
   });
 
   group('AppState', () {
     test('AppEmpty : initialState', () {
       expect(appBloc.initialState, AppEmpty());
+    });
+
+    test('AppError', () {
+      when(serviceMock.loadMovies()).thenThrow(Error);
+
+      final expectedResponse = [
+        AppEmpty(),
+        AppLoading(),
+        AppError(),
+      ];
+
+      appBloc.add(FetchEvent());
+
+      expectLater(
+        appBloc,
+        emitsInOrder(expectedResponse),
+      );
+    });
+
+    test('AppLoaded', () {
+      when(serviceMock.loadMovies()).thenAnswer((_) => Future.value(response));
+      final expectedResponse = [
+        AppEmpty(),
+        AppLoading(),
+        AppLoaded(response: response),
+      ];
+
+      appBloc.add(FetchEvent());
+
+      expectLater(
+        appBloc,
+        emitsInOrder(expectedResponse),
+      );
     });
   });
 }
