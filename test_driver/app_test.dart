@@ -24,16 +24,14 @@ void main() {
       SerializableFinder overviewTextFinder1 = find.byValueKey('1-overview');
       SerializableFinder releaseTextFinder1 = find.byValueKey('1-releaseDate');
 
-      //TODO: 1- provide to good value for the test
-      expect(await driver.getText(titleTextFinder1), '');
-      expect(await driver.getText(overviewTextFinder1), '');
-      expect(await driver.getText(releaseTextFinder1), '');
+      expect(await driver.getText(titleTextFinder1), 'Fight Club');
+      expect(await driver.getText(overviewTextFinder1), 'Overview 1');
+      expect(await driver.getText(releaseTextFinder1), '1999-10-12');
 
       // Movie 2
-      //TODO: 2- initialize titleTextFinder2 , overviewTextFinder2 , releaseTextFinder2
-      SerializableFinder titleTextFinder2;
-      SerializableFinder overviewTextFinder2;
-      SerializableFinder releaseTextFinder2;
+      SerializableFinder titleTextFinder2 = find.byValueKey('2-title');
+      SerializableFinder overviewTextFinder2 = find.byValueKey('2-overview');
+      SerializableFinder releaseTextFinder2 = find.byValueKey('2-releaseDate');
 
       expect(await driver.getText(titleTextFinder2), 'Fight Club 2');
       expect(await driver.getText(overviewTextFinder2), 'Overview 2');
