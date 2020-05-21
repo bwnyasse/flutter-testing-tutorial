@@ -1,0 +1,11 @@
+name: Flutter Movie CI On push
+
+# Trigger on push
+on: push
+
+jobs:
+  flutter:
+    runs-on: ubuntu-latest
+
+    steps:
+    #TODO doc: https://github.com/marketplace/actions/flutter-action
