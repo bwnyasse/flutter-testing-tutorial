@@ -12,13 +12,14 @@ import 'common.dart';
 
 void main() {
   testWidgets('Display App', (WidgetTester tester) async {
-      await tester.pumpWidget(AppProvider(
-        httpClient: MockClient((request) async {
-          return Response(json.encode(exampleJsonResponse), 200);
-        }),
-        child: MyApp(),
-      ));
+    await tester.pumpWidget(AppProvider(
+      httpClient: MockClient((request) async {
+        return Response(json.encode(exampleJsonResponse), 200);
+      }),
+      child: MyApp(),
+    ));
 
-      //TODO : 1- Use Finder to match the widget named MyHomePage
+    Finder textFinder = find.byType(MyHomePage);
+    expect(textFinder, findsOneWidget);
   });
 }
