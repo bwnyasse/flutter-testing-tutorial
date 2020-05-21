@@ -1,3 +1,8 @@
+import 'package:flutter_movie_deep_dive_test/src/services/services.dart';
+import 'package:mockito/mockito.dart';
+
+class AppServiceMock extends Mock implements AppService {}
+
 ///
 /// Example JSON Response from the API : https://developers.themoviedb.org/3
 ///
