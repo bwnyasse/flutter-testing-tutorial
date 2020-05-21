@@ -1,4 +1,4 @@
-name: Flutter Movie CI On push
+name: Flutter Testing Tutorial CI On push
 
 # Trigger on push
 on: push
@@ -32,3 +32,9 @@ jobs:
       with:
         name: apk
         path: build/app/outputs/apk/release/app-release.apk
+
+    - name: Collect the code coverage
+      uses: codecov/codecov-action@v1.0.3
+      with:
+        token: ${{secrets.CODECOV_TOKEN}} #required
+        file: ./coverage/lcov.info
