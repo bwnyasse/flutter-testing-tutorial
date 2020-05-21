@@ -1,0 +1,44 @@
+stages:
+  - test
+  - build_coverage
+  - deploy_coverage
+
+unit_test: # Name of the lane
+  image: cirrusci/flutter:stable
+  stage: test
+  script:
+    - /bin/sh bin/coverage-ci.sh
+  artifacts:
+    paths:
+      - coverage/
+  coverage: '/^lines\.+: |\d+\.?\d+\%/'
+  except:
+    - /^release-.*$/
+
+coverage_test: # Name of the lane
+  image: gableroux/flutter:v1.2.1
+  stage: build_coverage
+  script:
+    - echo "${CODECOV_TOKEN}"
+    - genhtml -o coverage coverage/lcov.info
+    - bash <(curl -s https://codecov.io/bash) -t "${CODECOV_TOKEN}"
+  artifacts:
+    paths:
+      - coverage/
+  coverage: '/^lines\.+: |\d+\.?\d+\%/'
+  except:
+    - /^release-.*$/
+    
+pages:
+  image: alpine
+  stage: deploy_coverage
+  dependencies:
+    - unit_test
+  script:
+    - mkdir public
+    - mv coverage/ public/coverage/
+  artifacts:
+    paths:
+      - public
+#  only:
+#    - master
