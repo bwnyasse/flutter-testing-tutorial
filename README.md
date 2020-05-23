@@ -4,6 +4,7 @@
     <th>Gitlab CI</th>
     <th>Github Action</th>
     <th>GCP Cloud Build</th>
+    <th>CodeMagic Build</th>
   </tr>
   <tr>
     <td>
@@ -19,9 +20,14 @@
             <img src="https://github.com/bwnyasse/flutter-testing-tutorial/workflows/Flutter%20Testing%20Tutorial%20CI%20On%20push/badge.svg"/>
         </a>
     </td>
-        <td>
+    <td>
         <a>
             <img src="https://storage.googleapis.com/model-zoo-260810-badges/builds/flutter-testing-tutorial/branches/master.svg"/>
+        </a>
+    </td>
+    <td>
+        <a href="https://codemagic.io/apps/5ec9416b261f343c0e2414b2/5ec9416b261f343c0e2414b1/latest_build">
+            <img src="https://api.codemagic.io/apps/5ec9416b261f343c0e2414b2/5ec9416b261f343c0e2414b1/status_badge.svg"/>
         </a>
     </td>
   </tr>
