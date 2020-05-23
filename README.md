@@ -3,6 +3,7 @@
     <th>License</th>
     <th>Gitlab CI</th>
     <th>Github Action</th>
+    <th>GCP Cloud Build</th>
   </tr>
   <tr>
     <td>
@@ -16,6 +17,11 @@
     <td>
         <a href="https://github.com/bwnyasse/flutter-testing-tutorial/actions?query=workflow%3A%22Flutter+Testing+Tutorial+CI+On+push%22" target="_blank">
             <img src="https://github.com/bwnyasse/flutter-testing-tutorial/workflows/Flutter%20Testing%20Tutorial%20CI%20On%20push/badge.svg"/>
+        </a>
+    </td>
+        <td>
+        <a>
+            <img src="https://storage.googleapis.com/model-zoo-260810-badges/builds/flutter-testing-tutorial/branches/master.svg"/>
         </a>
     </td>
   </tr>
