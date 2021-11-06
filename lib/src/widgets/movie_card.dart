@@ -4,7 +4,10 @@ import 'package:flutter_movie_deep_dive_test/src/models/models.dart';
 class MovieCard extends StatelessWidget {
   final Movie data;
 
-  const MovieCard({Key key, this.data}) : super(key: key);
+  const MovieCard({
+    Key? key,
+    required this.data,
+  }) : super(key: key);
 
   @override
   Widget build(BuildContext context) {
