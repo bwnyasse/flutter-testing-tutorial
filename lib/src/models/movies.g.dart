@@ -25,19 +25,19 @@ Map<String, dynamic> _$MoviesResponseToJson(MoviesResponse instance) =>
     };
 
 Movie _$MovieFromJson(Map<String, dynamic> json) => Movie(
-      id: json['id'] as int,
-      video: json['video'] as bool,
-      voteCount: json['vote_count'] as int,
-      voteAverage: (json['vote_average'] as num).toDouble(),
-      title: json['title'] as String,
-      posterPath: json['poster_path'] as String,
-      originalLanguage: json['original_language'] as String,
-      originalTitle: json['original_title'] as String,
-      adult: json['adult'] as bool,
-      overview: json['overview'] as String,
-      backdropPath: json['backdrop_path'] as String,
-      popularity: (json['popularity'] as num).toDouble(),
-      releaseDate: json['release_date'] as String,
+      id: json['id'] as int?,
+      video: json['video'] as bool?,
+      voteCount: json['vote_count'] as int?,
+      voteAverage: (json['vote_average'] as num?)?.toDouble(),
+      title: json['title'] as String?,
+      posterPath: json['poster_path'] as String?,
+      originalLanguage: json['original_language'] as String?,
+      originalTitle: json['original_title'] as String?,
+      adult: json['adult'] as bool?,
+      overview: json['overview'] as String?,
+      backdropPath: json['backdrop_path'] as String?,
+      popularity: (json['popularity'] as num?)?.toDouble(),
+      releaseDate: json['release_date'] as String?,
       favorite: json['favorite'] as bool? ?? false,
     );
 

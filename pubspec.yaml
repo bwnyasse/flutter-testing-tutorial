@@ -27,7 +27,9 @@ dev_dependencies:
     sdk: flutter
   flutter_test:
     sdk: flutter
-
+  
+  bloc_test: ^8.5.0
+  
   # Tools to write binaries that run builders.
   build_runner: ^2.1.2
 

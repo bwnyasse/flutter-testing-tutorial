@@ -3,7 +3,7 @@ import 'package:flutter_test/flutter_test.dart';
 
 main() {
   group('movie.posterPathResolved', () {
-    test('posterPath is null', () {
+    test('posterPath is not empty', () {
       Movie m = Movie();
       expect(m.posterPathResolved, equals('https://via.placeholder.com/300'));
     });

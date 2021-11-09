@@ -27,14 +27,14 @@ class MovieCard extends StatelessWidget {
               Padding(
                 padding: const EdgeInsets.all(8.0),
                 child: Text(
-                  data.title,
-                  key: Key("${data.id}-title"),
+                  data.title ?? "",
+                  key: Key('${data.id}-title'),
                   textAlign: TextAlign.left,
                   style: TextStyle(fontWeight: FontWeight.bold, fontSize: 18),
                 ),
               ),
               Text(
-                data.overview,
+                data.overview ?? "",
                 key: Key("${data.id}-overview"),
                 style: TextStyle(color: Colors.black54),
               ),
@@ -48,7 +48,7 @@ class MovieCard extends StatelessWidget {
                       child: Padding(
                         padding: const EdgeInsets.only(left: 8),
                         child: Text(
-                          data.releaseDate,
+                          data.releaseDate ?? "",
                           key: Key("${data.id}-releaseDate"),
                         ),
                       ),

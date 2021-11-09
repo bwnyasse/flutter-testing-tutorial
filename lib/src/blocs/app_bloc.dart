@@ -13,6 +13,7 @@ class AppBloc extends Bloc<AppEvent, AppState> {
 
   @override
   Stream<AppState> mapEventToState(AppEvent event) async* {
+    yield initWithState;
     //
     // FETCH
     //
