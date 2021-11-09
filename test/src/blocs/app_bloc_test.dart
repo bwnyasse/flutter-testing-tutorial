@@ -3,6 +3,7 @@ import 'package:flutter_movie_deep_dive_test/src/blocs/blocs.dart';
 import 'package:flutter_movie_deep_dive_test/src/models/models.dart';
 import 'package:flutter_movie_deep_dive_test/src/services/services.dart';
 import 'package:flutter_test/flutter_test.dart';
+import 'package:mockito/mockito.dart';
 import 'package:mockito/annotations.dart';
 
 import '../common.dart';
@@ -28,11 +29,35 @@ main() {
 
   test('App close does not emit new app state', () async {
     appBloc.close();
-    //TODO: 1- Must implement and check emitsDone
-    throw UnimplementedError();
+    await expectLater(
+      appBloc.stream,
+      emitsInOrder([emitsDone]),
+    );
   });
 
   test('AppEmpty is initialState', () {
     expect(appBloc.initWithState, empty);
+  });
+
+  group('Bloc AppState', () {
+    blocTest<AppBloc, AppState>(
+      'emits [AppError] state',
+      build: () {
+        when(serviceMock.loadMovies()).thenThrow(Error);
+        return AppBloc(service: serviceMock, initWithState: AppEmpty());
+      },
+      act: (bloc) => bloc.add(FetchEvent()),
+      expect: () => [empty, loading, error],
+    );
+
+    blocTest<AppBloc, AppState>(
+      'emits [AppLoaded] state',
+      build: () {
+        when(serviceMock.loadMovies()).thenAnswer((_) => Future.value(response));
+        return AppBloc(service: serviceMock, initWithState: AppEmpty());
+      },
+      act: (bloc) => bloc.add(FetchEvent()),
+      expect: () => [empty, loading, AppLoaded(response: response)],
+    );
   });
 }
