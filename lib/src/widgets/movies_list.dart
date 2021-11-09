@@ -5,7 +5,7 @@ import 'package:flutter_movie_deep_dive_test/src/widgets/movie_card.dart';
 class MoviesList extends StatelessWidget {
   final MoviesResponse response;
 
-  MoviesList({@required this.response});
+  MoviesList({required this.response});
 
   @override
   Widget build(BuildContext context) {

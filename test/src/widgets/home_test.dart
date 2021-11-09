@@ -3,28 +3,26 @@ import 'package:flutter_bloc/flutter_bloc.dart';
 import 'package:flutter_movie_deep_dive_test/src/blocs/blocs.dart';
 import 'package:flutter_movie_deep_dive_test/src/models/models.dart';
 import 'package:flutter_movie_deep_dive_test/src/providers/providers.dart';
+import 'package:flutter_movie_deep_dive_test/src/services/services.dart';
 import 'package:flutter_movie_deep_dive_test/src/widgets/widgets.dart';
 import 'package:flutter_test/flutter_test.dart';
 import 'package:http/http.dart';
-import 'package:image_test_utils/image_test_utils.dart';
+import 'package:mockito/annotations.dart';
+import 'package:network_image_mock/network_image_mock.dart';
 import 'package:mockito/mockito.dart';
 
+import '../blocs/app_bloc_test.mocks.dart';
 import '../common.dart';
 
 class UnknowState extends AppState {}
 
+@GenerateMocks([AppService])
 void main() {
-  AppServiceMock serviceMock;
-  AppBloc appBloc;
-  MoviesResponse response;
+  MockAppService serviceMock = MockAppService();
+  late MoviesResponse response;
   setUp(() {
-    serviceMock = AppServiceMock();
     response = MoviesResponse.fromJson(exampleJsonResponse2);
     when(serviceMock.loadMovies()).thenAnswer((_) => Future.value(response));
-  });
-
-  tearDown(() {
-    appBloc?.close();
   });
 
   group('Display Home', () {
@@ -33,9 +31,9 @@ void main() {
         MaterialApp(
           home: Scaffold(
             body: AppProvider(
+              httpClient: Client(),
               child: BlocProvider(
-                builder: (context) =>
-                    AppBloc(service: serviceMock, initWithState: AppLoading()),
+                create: (context) => AppBloc(service: serviceMock, initWithState: AppLoading()),
                 child: MyHomePage(title: 'Test Widget'),
               ),
             ),
@@ -48,15 +46,14 @@ void main() {
     });
 
     testWidgets('state: AppLoaded', (WidgetTester tester) async {
-      provideMockedNetworkImages(() async {
+      mockNetworkImagesFor(() async {
         await tester.pumpWidget(
           MaterialApp(
             home: Scaffold(
               body: AppProvider(
+                httpClient: Client(),
                 child: BlocProvider(
-                  builder: (context) => AppBloc(
-                      service: serviceMock,
-                      initWithState: AppLoaded(response: response)),
+                  create: (context) => AppBloc(service: serviceMock, initWithState: AppLoaded(response: response)),
                   child: MyHomePage(title: 'Test Widget'),
                 ),
               ),
@@ -76,8 +73,7 @@ void main() {
             body: AppProvider(
               httpClient: Client(),
               child: BlocProvider(
-                builder: (context) =>
-                    AppBloc(service: serviceMock, initWithState: AppError()),
+                create: (context) => AppBloc(service: serviceMock, initWithState: AppError()),
                 child: MyHomePage(title: 'Test Widget'),
               ),
             ),
@@ -94,10 +90,9 @@ void main() {
         MaterialApp(
           home: Scaffold(
             body: AppProvider(
-              httpClient: null,
+              httpClient: Client(),
               child: BlocProvider(
-                builder: (context) =>
-                    AppBloc(service: serviceMock, initWithState: UnknowState()),
+                create: (context) => AppBloc(service: serviceMock, initWithState: UnknowState()),
                 child: MyHomePage(title: 'Test Widget'),
               ),
             ),

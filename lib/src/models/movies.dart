@@ -13,21 +13,20 @@ class MoviesResponse extends Equatable {
   @JsonKey(name: 'total_pages')
   final int totalPages;
 
-  @JsonKey(nullable: false, name: 'results')
+  @JsonKey(name: 'results')
   final List<Movie> movies;
 
   MoviesResponse({
-    this.page,
-    this.totalPages,
-    this.totalResults,
-    this.movies,
+    required this.page,
+    required this.totalPages,
+    required this.totalResults,
+    required this.movies,
   });
 
-  factory MoviesResponse.fromJson(Map<String, dynamic> json) =>
-      _$MoviesResponseFromJson(json);
+  factory MoviesResponse.fromJson(Map<String, dynamic> json) => _$MoviesResponseFromJson(json);
 
   @override
-  List<Object> get props => [
+  List<dynamic> get props => [
         this.page,
         this.totalPages,
         this.totalResults,
@@ -37,44 +36,44 @@ class MoviesResponse extends Equatable {
 
 @JsonSerializable()
 class Movie extends Equatable {
-  final int id;
+  final int? id;
 
-  final bool video;
+  final bool? video;
 
   @JsonKey(name: 'vote_count')
-  final int voteCount;
+  final int? voteCount;
 
   @JsonKey(name: 'vote_average')
-  final double voteAverage;
+  final double? voteAverage;
 
-  final String title;
+  final String? title;
 
   @JsonKey(name: 'poster_path')
-  final String posterPath;
+  final String? posterPath;
 
   @JsonKey(name: 'original_language')
-  final String originalLanguage;
+  final String? originalLanguage;
 
   @JsonKey(name: 'original_title')
-  final String originalTitle;
+  final String? originalTitle;
 
-  final bool adult;
+  final bool? adult;
 
-  final String overview;
+  final String? overview;
 
   @JsonKey(name: 'gender_ids')
-  final List genreIds = [];
+  final List? genreIds = [];
 
   @JsonKey(name: 'backdrop_path')
-  final String backdropPath;
+  final String? backdropPath;
 
-  final double popularity;
+  final double? popularity;
 
   @JsonKey(name: 'release_date')
-  final String releaseDate;
+  final String? releaseDate;
 
   @JsonKey(defaultValue: false)
-  final bool favorite;
+  final bool? favorite;
 
   Movie({
     this.id,
@@ -96,7 +95,7 @@ class Movie extends Equatable {
   factory Movie.fromJson(Map<String, dynamic> json) => _$MovieFromJson(json);
 
   @override
-  List<Object> get props => [
+  List<dynamic> get props => [
         this.id,
         this.video,
         this.voteCount,
@@ -113,7 +112,6 @@ class Movie extends Equatable {
         this.favorite,
       ];
 
-  String get posterPathResolved => posterPath == null
-      ? 'https://via.placeholder.com/300'
-      : 'http://image.tmdb.org/t/p/w185/$posterPath';
+  String get posterPathResolved =>
+      posterPath == null ? 'https://via.placeholder.com/300' : 'http://image.tmdb.org/t/p/w185/$posterPath';
 }

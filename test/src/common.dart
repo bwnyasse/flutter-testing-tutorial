@@ -1,12 +1,15 @@
 import 'package:flutter_movie_deep_dive_test/src/services/services.dart';
 import 'package:mockito/mockito.dart';
 
-class AppServiceMock extends Mock implements AppService {}
+//class AppServiceMock extends Mock implements AppService {}
 
 ///
 /// Example JSON Response from the API : https://developers.themoviedb.org/3
 ///
 final exampleJsonResponse = {
+  "page": 1,
+  "total_pages": 1,
+  "total_results": 1,
   "results": [
     {
       "adult": false,
@@ -32,42 +35,12 @@ final exampleJsonResponse = {
           "name": "Regency Enterprises",
           "origin_country": "US"
         },
-        {
-          "id": 711,
-          "logo_path": null,
-          "name": "Fox 2000 Pictures",
-          "origin_country": ""
-        },
-        {
-          "id": 20555,
-          "logo_path": null,
-          "name": "Taurus Film",
-          "origin_country": ""
-        },
-        {
-          "id": 54050,
-          "logo_path": null,
-          "name": "Linson Films",
-          "origin_country": ""
-        },
-        {
-          "id": 54051,
-          "logo_path": null,
-          "name": "Atman Entertainment",
-          "origin_country": ""
-        },
-        {
-          "id": 54052,
-          "logo_path": null,
-          "name": "Knickerbocker Films",
-          "origin_country": ""
-        },
-        {
-          "id": 25,
-          "logo_path": "/qZCc1lty5FzX30aOCVRBLzaVmcp.png",
-          "name": "20th Century Fox",
-          "origin_country": "US"
-        }
+        {"id": 711, "logo_path": null, "name": "Fox 2000 Pictures", "origin_country": ""},
+        {"id": 20555, "logo_path": null, "name": "Taurus Film", "origin_country": ""},
+        {"id": 54050, "logo_path": null, "name": "Linson Films", "origin_country": ""},
+        {"id": 54051, "logo_path": null, "name": "Atman Entertainment", "origin_country": ""},
+        {"id": 54052, "logo_path": null, "name": "Knickerbocker Films", "origin_country": ""},
+        {"id": 25, "logo_path": "/qZCc1lty5FzX30aOCVRBLzaVmcp.png", "name": "20th Century Fox", "origin_country": "US"}
       ],
       "production_countries": [
         {"iso_3166_1": "US", "name": "United States of America"}
@@ -79,8 +52,7 @@ final exampleJsonResponse = {
         {"iso_639_1": "en", "name": "English"}
       ],
       "status": "Released",
-      "tagline":
-          "How much can you know about yourself if you've never been in a fight?",
+      "tagline": "How much can you know about yourself if you've never been in a fight?",
       "title": "Fight Club",
       "video": false,
       "vote_average": 7.8,
@@ -93,6 +65,9 @@ final exampleJsonResponse = {
 /// Another Example JSON Response from the API : https://developers.themoviedb.org/3
 ///
 final exampleJsonResponse2 = {
+  "page": 1,
+  "total_pages": 1,
+  "total_results": 2,
   "results": [
     {
       "adult": false,

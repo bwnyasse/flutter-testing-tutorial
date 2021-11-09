@@ -1,70 +1,63 @@
+import 'package:bloc_test/bloc_test.dart';
 import 'package:flutter_movie_deep_dive_test/src/blocs/blocs.dart';
 import 'package:flutter_movie_deep_dive_test/src/models/models.dart';
+import 'package:flutter_movie_deep_dive_test/src/services/services.dart';
 import 'package:flutter_test/flutter_test.dart';
 import 'package:mockito/mockito.dart';
+import 'package:mockito/annotations.dart';
 
 import '../common.dart';
+import 'app_bloc_test.mocks.dart';
 
+const loading = TypeMatcher<AppLoading>();
+const error = TypeMatcher<AppError>();
+const empty = TypeMatcher<AppEmpty>();
+
+@GenerateMocks([AppService])
 main() {
-  AppServiceMock serviceMock;
-  AppBloc appBloc;
-  MoviesResponse response;
+  MockAppService serviceMock = MockAppService();
+  AppBloc appBloc = AppBloc(service: serviceMock, initWithState: AppEmpty());
+  late MoviesResponse response;
 
   setUp(() {
-    serviceMock = AppServiceMock();
-    appBloc = AppBloc(service: serviceMock);
     response = MoviesResponse.fromJson(exampleJsonResponse);
   });
 
   tearDown(() {
-    appBloc?.close();
+    appBloc.close();
   });
 
-  test('close does not emit new app state', () {
+  test('App close does not emit new app state', () async {
     appBloc.close();
-
-    expectLater(
-      appBloc,
-      emitsInOrder([AppEmpty(), emitsDone]),
+    await expectLater(
+      appBloc.stream,
+      emitsInOrder([emitsDone]),
     );
   });
 
-  group('AppState', () {
-    test('AppEmpty : initialState', () {
-      expect(appBloc.initialState, AppEmpty());
-    });
+  test('AppEmpty is initialState', () {
+    expect(appBloc.initWithState, empty);
+  });
 
-    test('AppError', () {
-      when(serviceMock.loadMovies()).thenThrow(Error);
+  group('Bloc AppState', () {
+    blocTest<AppBloc, AppState>(
+      'emits [AppError] state',
+      build: () {
+        when(serviceMock.loadMovies()).thenThrow(Error);
+        return AppBloc(service: serviceMock, initWithState: AppEmpty());
+      },
+      act: (bloc) => bloc.add(FetchEvent()),
+      expect: () => [empty, loading, error],
+    );
 
-      final expectedResponse = [
-        AppEmpty(),
-        AppLoading(),
-        AppError(),
-      ];
-
-      appBloc.add(FetchEvent());
-
-      expectLater(
-        appBloc,
-        emitsInOrder(expectedResponse),
-      );
-    });
-
-    test('AppLoaded', () {
-      when(serviceMock.loadMovies()).thenAnswer((_) => Future.value(response));
-      final expectedResponse = [
-        AppEmpty(),
-        AppLoading(),
-        AppLoaded(response: response),
-      ];
-
-      appBloc.add(FetchEvent());
-
-      expectLater(
-        appBloc,
-        emitsInOrder(expectedResponse),
-      );
-    });
+    blocTest<AppBloc, AppState>(
+      'emits [AppLoaded] state',
+      build: () {
+        when(serviceMock.loadMovies()).thenAnswer((_) => Future.value(response));
+        return AppBloc(service: serviceMock, initWithState: AppEmpty());
+      },
+      act: (bloc) => bloc.add(FetchEvent()),
+      expect: () => [empty, loading, AppLoaded(response: response)],
+    );
   });
 }

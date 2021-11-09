@@ -2,13 +2,13 @@ import 'package:flutter/material.dart';
 import 'package:flutter_movie_deep_dive_test/src/models/models.dart';
 import 'package:flutter_movie_deep_dive_test/src/widgets/widgets.dart';
 import 'package:flutter_test/flutter_test.dart';
-import 'package:image_test_utils/image_test_utils.dart';
+import 'package:network_image_mock/network_image_mock.dart';
 
 import '../common.dart';
 
 void main() {
   MoviesResponse exampleResponse;
-  Movie movie;
+  late Movie movie;
 
   setUp(() {
     exampleResponse = MoviesResponse.fromJson(exampleJsonResponse);
@@ -16,7 +16,7 @@ void main() {
   });
 
   testWidgets('Display Movie Card', (WidgetTester tester) async {
-    provideMockedNetworkImages(() async {
+    mockNetworkImagesFor(() async {
       await tester.pumpWidget(
         MaterialApp(
           home: Scaffold(
@@ -31,13 +31,13 @@ void main() {
       final movieFinder = find.byType(MovieCard);
       expect(movieFinder, findsOneWidget);
 
-      Finder textFinder = find.text(movie.title);
+      Finder textFinder = find.text(movie.title ?? "");
       expect(textFinder, findsOneWidget);
 
-      textFinder = find.text(movie.overview);
+      textFinder = find.text(movie.overview ?? "");
       expect(textFinder, findsOneWidget);
 
-      textFinder = find.text(movie.releaseDate);
+      textFinder = find.text(movie.releaseDate ?? "");
       expect(textFinder, findsOneWidget);
     });
   });

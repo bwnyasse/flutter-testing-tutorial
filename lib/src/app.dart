@@ -12,11 +12,12 @@ class MyApp extends StatelessWidget {
       title: 'MoviesDB for Testing',
       theme: ThemeData(primarySwatch: Colors.blue),
       home: BlocProvider(
-        builder: (context) => AppBloc(
+        create: (context) => AppBloc(
           service: Provider.of<AppService>(
             context,
             listen: false,
           ),
+          initWithState: AppEmpty(),
         ),
         child: MyHomePage(title: 'Flutter Testing Tutorial'),
       ),

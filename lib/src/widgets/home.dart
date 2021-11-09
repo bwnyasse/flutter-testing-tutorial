@@ -5,9 +5,12 @@ import 'package:flutter_movie_deep_dive_test/src/blocs/blocs.dart';
 import 'package:flutter_movie_deep_dive_test/src/widgets/widgets.dart';
 
 class MyHomePage extends StatefulWidget {
-  MyHomePage({Key key, this.title}) : super(key: key);
-
   final String title;
+
+  MyHomePage({
+    Key? key,
+    required this.title,
+  }) : super(key: key);
 
   @override
   _MyHomePageState createState() => _MyHomePageState();
