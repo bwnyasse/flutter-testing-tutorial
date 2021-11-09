@@ -14,9 +14,9 @@ void main() {
       await tester.pumpAndSettle();
 
       // Movie 1
-      final titleTextFinder1 = find.byKey(Key('TODO'));
-      final overviewTextFinder1 = find.byKey(Key('TODO'));
-      final releaseTextFinder1 = find.byKey(Key('TODO'));
+      final titleTextFinder1 = find.byKey(Key('1-title'));
+      final overviewTextFinder1 = find.byKey(Key('1-overview'));
+      final releaseTextFinder1 = find.byKey(Key('1-releaseDate'));
       // checking widget present or not
       expect(titleTextFinder1, findsOneWidget);
       expect(overviewTextFinder1, findsOneWidget);
@@ -28,9 +28,9 @@ void main() {
       expect((releaseTextFinder1.evaluate().single.widget as Text).data, '1999-10-12');
 
       // Movie 2
-      final titleTextFinder2 = find.byKey(Key('TODO'));
-      final overviewTextFinder2 = find.byKey(Key('TODO'));
-      final releaseTextFinder2 = find.byKey(Key('TODO'));
+      final titleTextFinder2 = find.byKey(Key('2-title'));
+      final overviewTextFinder2 = find.byKey(Key('2-overview'));
+      final releaseTextFinder2 = find.byKey(Key('2-releaseDate'));
       // checking widget present or not
       expect(titleTextFinder2, findsOneWidget);
       expect(overviewTextFinder2, findsOneWidget);
